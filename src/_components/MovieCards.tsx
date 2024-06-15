@@ -9,13 +9,15 @@ const MovieCards = (itm: any) => {
       onClick={() => navigate(`/${itm.id}`)}
       className="min-w-[200px] h-[370px] bg-[#050E12] rounded-lg snap-center group cursor-pointer"
     >
-      <div className="relative">
+      <div className="relative bg-[url('/tube-spinner.svg')] bg-no-repeat bg-center bg-contain">
         <img
-          src={`https://image.tmdb.org/t/p/w300${itm.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w200${itm.poster_path}`}
           className="rounded-t-lg"
           alt={"Poster " + itm.title + " Movie"}
           width="200"
-          height="355"
+          key={itm.id}
+          height="300"
+          loading="lazy"
         />
         <div className="absolute bottom-2 gap-1 right-2 hidden group-hover:flex">
           <IconBookmark color="white" />

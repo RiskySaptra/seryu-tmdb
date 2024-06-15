@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import { format } from "date-fns";
 import "react-circular-progressbar/dist/styles.css";
 import { IconBookmark, IconCircleFilled, IconStar } from "@tabler/icons-react";
@@ -12,27 +12,47 @@ import MovieCards from "../_components/MovieCards";
 
 const MovieDetails = () => {
   const data: any = useLoaderData();
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
   const { movieDetail, movieRecomendations } = data;
 
   return (
     <div className="container mx-auto sm:px-0 px-5">
+      {isLoading && (
+        <div className="fixed top-0 left-0 w-full h-screen bg-black/50 z-10">
+          <div className="fixed top-5 right-5 z-10 w-[50px] h-[50px] bg-[url('/tube-spinner.svg')] bg-no-repeat bg-center bg-contain" />
+        </div>
+      )}
       <div>
         <img
-          src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
-          className="absolute sm:top-[100px] top-[60px] left-0 -z-10 sm:h-[430px] w-full object-cover"
+          src={`${
+            !movieDetail.backdrop_path
+              ? `https://media.themoviedb.org/t/p/w500_and_h225_multi_faces_filter(blur)${movieDetail.poster_path}`
+              : `https://image.tmdb.org/t/p/w1280${movieDetail.backdrop_path}`
+          }`}
+          className="absolute sm:top-[100px] top-[60px] left-0 -z-10 sm:h-[430px] min-h-[250px] w-full object-cover"
+          key={movieDetail.id}
           alt={"Cover " + movieDetail.title + " Movie"}
+          loading="lazy"
+          fetchPriority="high"
         />
         <div className="sm:h-[430px] w-full bg-black/40 absolute sm:top-[100px] top-[60px] left-0 -z-10" />
       </div>
 
       <div className="sm:pt-16 pt-8 flex sm:flex-row flex-col sm:gap-10 gap-5">
-        <div>
+        <div
+          className={`${
+            !movieDetail.backdrop_path ? "flex justify-center" : ""
+          }`}
+        >
           <img
             src={`https://image.tmdb.org/t/p/w300${movieDetail.poster_path}`}
-            className="rounded-lg sm:min-w-[200px] w-[120px]"
+            className="rounded-lg sm:min-w-[200px] w-[120px] bg-[url('/tube-spinner.svg')] bg-no-repeat bg-center bg-contain"
             alt={"Poster " + movieDetail.title + " Movie"}
+            key={movieDetail.id}
             width="200"
             height="300"
+            loading="lazy"
           />
         </div>
         <div className="pt-8 flex flex-col gap-3">
@@ -74,7 +94,7 @@ const MovieDetails = () => {
           </div>
 
           <div className="flex items-center gap-3 relative my-1">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-2">
               <div className="w-[35px] h-[35px] bg-white rounded-full p-[3px]">
                 <CircularProgressbar
                   value={movieDetail.vote_average}
