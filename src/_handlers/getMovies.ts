@@ -13,3 +13,15 @@ export async function getTopRated() {
   );
   return data;
 }
+
+export async function getMovieRecommendations(movieId: string) {
+  const { data }: any = await clientInstance.get(
+    `/movie/${movieId}/recommendations`
+  );
+  return data;
+}
+
+export async function getMovieDetails(movieId: string) {
+  const { data }: any = await clientInstance.get(`/movie/${movieId}`);
+  return data;
+}
