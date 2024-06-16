@@ -2,7 +2,6 @@ export function minutesToHoursAndMinutes(minutes: number) {
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
   const result = `${hours}h ${remainingMinutes}m`;
-
   return result;
 }
 
@@ -14,7 +13,7 @@ export function arrayToString(array: any, property: string) {
 
 export function calculatePercentage(part: number, whole: number) {
   if (whole === 0) {
-    return 0; // Handle division by zero if necessary
+    return 0;
   }
   const percentage = (part / whole) * 100;
   const roundedPercentage = Math.floor(percentage);

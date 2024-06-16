@@ -1,5 +1,6 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
 import MovieCards from "../_components/MovieCards";
+import GridMovieCard from "../_components/GridMovieCard";
 
 function Homepage() {
   const data: any = useLoaderData();
@@ -8,10 +9,10 @@ function Homepage() {
   const { now_playing, top_rated } = data;
 
   return (
-    <div className="container mx-auto sm:px-0 px-5 ">
+    <div className="container mx-auto xl:px-0 px-3">
       {isLoading && (
-        <div className="fixed top-0 left-0 w-full h-screen bg-black/50 z-10">
-          <div className="fixed top-5 right-5 z-10 w-[50px] h-[50px] bg-[url('/tube-spinner.svg')] bg-no-repeat bg-center bg-contain" />
+        <div className="fixed top-0 left-0 w-full h-screen bg-black/50 z-30">
+          <div className="fixed top-5 right-5 z-10 w-[50px] h-[50px] bg-[url('/ripples.svg')] bg-no-repeat bg-center bg-contain" />
         </div>
       )}
       <div className="sm:pt-10 pt-5">
@@ -28,8 +29,10 @@ function Homepage() {
         <h1 className="sm:text-[48px] text-[28px] font-poppins font-semibold mb-3">
           Top Rated
         </h1>
-        <div className="h-[740px] bg-gray-100">
-          <p className="">list</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 sm:gap-5 gap-3">
+          {top_rated.results.map((itm: any, idx: number) => (
+            <GridMovieCard key={idx} {...itm} />
+          ))}
         </div>
       </div>
     </div>

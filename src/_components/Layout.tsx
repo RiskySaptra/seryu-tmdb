@@ -4,8 +4,8 @@ import { Link, Outlet } from "react-router-dom";
 const Layout = () => {
   return (
     <div>
-      <div className="bg-[#0EA5E9] ">
-        <div className="container mx-auto sm:px-0 px-5">
+      <div className="bg-[#0EA5E9] fixed w-full z-20">
+        <div className="container mx-auto xl:px-0 px-4">
           <div className="sm:h-[100px] h-[60px] flex justify-between items-center flex-row">
             <Link
               to={"/"}
@@ -29,7 +29,9 @@ const Layout = () => {
           </div>
         </div>
       </div>
-      <Outlet />
+      <div className="sm:pt-[100px] pt-[60px]">
+        <Outlet />
+      </div>
     </div>
   );
 };

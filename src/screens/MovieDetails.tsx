@@ -17,10 +17,10 @@ const MovieDetails = () => {
   const { movieDetail, movieRecomendations } = data;
 
   return (
-    <div className="container mx-auto sm:px-0 px-5">
+    <div className="container mx-auto xl:px-0 px-3">
       {isLoading && (
-        <div className="fixed top-0 left-0 w-full h-screen bg-black/50 z-10">
-          <div className="fixed top-5 right-5 z-10 w-[50px] h-[50px] bg-[url('/tube-spinner.svg')] bg-no-repeat bg-center bg-contain" />
+        <div className="fixed top-0 left-0 w-full h-screen bg-black/50 z-30">
+          <div className="fixed top-5 right-5 z-10 w-[50px] h-[50px] bg-[url('/ripples.svg')] bg-no-repeat bg-center bg-contain" />
         </div>
       )}
       <div>

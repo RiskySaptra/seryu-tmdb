@@ -2,20 +2,20 @@ import { IconBookmark, IconStar } from "@tabler/icons-react";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
-const MovieCards = (itm: any) => {
+const GridMovieCard = (itm: any) => {
   const navigate = useNavigate();
   return (
     <div
       onClick={() => navigate(`/${itm.id}`)}
-      className="min-w-[200px] h-[370px] bg-[#050E12] rounded-lg snap-center group cursor-pointer"
+      className="sm:min-w-[200px] sm:h-[430px] bg-[#050E12] rounded-lg snap-center group cursor-pointer"
     >
       <div className="relative bg-[url('/tube-spinner.svg')] bg-no-repeat bg-center bg-contain">
         <img
+          key={itm.id}
           src={`https://image.tmdb.org/t/p/w300${itm.poster_path}`}
           className="rounded-t-lg"
           alt={"Poster " + itm.title + " Movie"}
-          width="200"
-          key={itm.id}
+          width="246"
           height="300"
           loading="lazy"
         />
@@ -25,7 +25,7 @@ const MovieCards = (itm: any) => {
         </div>
       </div>
 
-      <div className="px-5 pt-3">
+      <div className="px-5 pt-3 pb-3">
         <p className="truncate text-[#B6B6B6] text-[18px] font-bold group-hover:text-white font-inter">
           {itm.title}
         </p>
@@ -37,4 +37,4 @@ const MovieCards = (itm: any) => {
   );
 };
 
-export default MovieCards;
+export default GridMovieCard;
