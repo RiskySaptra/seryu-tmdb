@@ -1,7 +1,6 @@
 import { IconMenu2 } from "@tabler/icons-react";
 import { Link, Outlet, useNavigation } from "react-router-dom";
-import useInterval from "use-interval";
-import { useWindowFocus } from "../_lib/hooks";
+import { useInterval, useWindowFocus } from "../_lib/hooks";
 import { getFavorite, getWatchlist } from "../_handlers/getMovies";
 
 const Layout = () => {

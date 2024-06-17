@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRevalidator } from "react-router-dom";
 
 export function useWindowFocus() {
@@ -41,4 +41,42 @@ export function useLocalStorage(key: string) {
     revalidator.revalidate();
   }
   return [state, setStorage];
+}
+
+export function useInterval(
+  callback: () => void,
+  delay: number | null | false,
+  immediate?: boolean
+): void {
+  const savedCallback = useRef<() => void>();
+
+  // Remember the latest callback if it changes
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval
+  useEffect(() => {
+    // If delay is null or false, do nothing
+    if (delay === null || delay === false) {
+      return;
+    }
+
+    // Function to be executed at each interval
+    function tick() {
+      if (savedCallback.current) {
+        savedCallback.current();
+      }
+    }
+
+    // If immediate is true, call the function once immediately
+    if (immediate) {
+      tick();
+    }
+
+    const id = setInterval(tick, delay);
+
+    // Clean up the interval on component unmount or when delay changes
+    return () => clearInterval(id);
+  }, [delay, immediate]);
 }

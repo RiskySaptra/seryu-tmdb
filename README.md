@@ -36,8 +36,7 @@ This project requires Node.js version `v20.11.1`.
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1",
-    "use-interval": "^1.4.0"
+    "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
@@ -66,7 +65,6 @@ This project requires Node.js version `v20.11.1`.
 - **react-circular-progressbar**: Circular progress bar component for React.
 - **react-dom**: Entry point of the DOM-related rendering paths.
 - **react-router-dom**: Declarative routing for React web applications.
-- **use-interval**: Custom React hook for using intervals.
 
 ### Development Dependencies:
 
