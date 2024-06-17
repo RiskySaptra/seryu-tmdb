@@ -1,7 +1,7 @@
-import { IconMenu2 } from "@tabler/icons-react";
 import { Link, Outlet, useNavigation } from "react-router-dom";
 import { useInterval, useWindowFocus } from "../_lib/hooks";
 import { getFavorite, getWatchlist } from "../_handlers/getMovies";
+import MenuButton from "./MenuButton";
 
 const Layout = () => {
   // const revalidator = useRevalidator();
@@ -52,11 +52,7 @@ const Layout = () => {
                 Watchlist
               </Link>
             </div>
-            <div className="sm:hidden">
-              <button className="flex items-center">
-                <IconMenu2 size={35} color="white" />
-              </button>
-            </div>
+            <MenuButton />
           </div>
         </div>
       </div>
