@@ -10,8 +10,6 @@ import {
 
 import Layout from "../_components/Layout.tsx";
 import ErrorPage from "../_components/ErrorPage.tsx";
-import Homepage from "../screens/Homepage.tsx";
-import MovieDetails from "../screens/MovieDetails.tsx";
 import Favorite from "../screens/Favorite.tsx";
 import Watchlist from "../screens/Watchlist.tsx";
 
@@ -22,7 +20,10 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Homepage />,
+        async lazy() {
+          let Homepage = await import("../screens/Homepage.tsx");
+          return { Component: Homepage.default };
+        },
         loader: async () => {
           const now_playing = await getNowPlaying();
           const top_rated = await getTopRated();
@@ -31,7 +32,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "/:movieId",
-        element: <MovieDetails />,
+        async lazy() {
+          let MovieDetails = await import("../screens/MovieDetails.tsx");
+          return { Component: MovieDetails.default };
+        },
         loader: async ({ params }: any) => {
           const movieDetail = await getMovieDetails(params.movieId);
           const movieRecomendations = await getMovieRecommendations(
@@ -43,7 +47,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "favorite",
-        element: <Favorite />,
+        async lazy() {
+          let Favorite = await import("../screens/Favorite.tsx");
+          return { Component: Favorite.default };
+        },
         loader: async () => {
           const favorites = await getFavorite();
           return favorites;
@@ -51,7 +58,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "watchlist",
-        element: <Watchlist />,
+        async lazy() {
+          let Watchlist = await import("../screens/Watchlist.tsx");
+          return { Component: Watchlist.default };
+        },
         loader: async () => {
           const watchlist = await getWatchlist();
           return watchlist;
