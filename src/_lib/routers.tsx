@@ -8,14 +8,14 @@ import {
   getWatchlist,
 } from "../_handlers/getMovies.ts";
 
-import Layout from "../_components/Layout.tsx";
 import ErrorPage from "../_components/ErrorPage.tsx";
-import Favorite from "../screens/Favorite.tsx";
-import Watchlist from "../screens/Watchlist.tsx";
 
 export const router = createBrowserRouter([
   {
-    element: <Layout />,
+    async lazy() {
+      let Layout = await import("../_components/Layout.tsx");
+      return { Component: Layout.default };
+    },
     errorElement: <ErrorPage />,
     children: [
       {
