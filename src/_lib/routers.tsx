@@ -8,14 +8,12 @@ import {
   getWatchlist,
 } from "../_handlers/getMovies.ts";
 
+import Layout from "../_components/Layout.tsx";
 import ErrorPage from "../_components/ErrorPage.tsx";
 
 export const router = createBrowserRouter([
   {
-    async lazy() {
-      let Layout = await import("../_components/Layout.tsx");
-      return { Component: Layout.default };
-    },
+    element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
       {

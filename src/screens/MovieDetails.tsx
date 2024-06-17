@@ -27,7 +27,6 @@ const MovieDetails = () => {
           className="absolute sm:top-[100px] top-[60px] left-0 -z-10 sm:h-[430px] min-h-[250px] w-full object-cover"
           key={movieDetail.id}
           alt={"Cover " + movieDetail.title + " Movie"}
-          loading="lazy"
         />
         <div className="sm:h-[430px] w-full bg-black/40 absolute sm:top-[100px] top-[60px] left-0 -z-10" />
       </div>
