@@ -20,23 +20,9 @@ export function calculatePercentage(part: number, whole: number) {
   return roundedPercentage;
 }
 
-export const isFavorites = (movieId: number) => {
-  const favorites: any = localStorage.getItem("favorites");
-  if (!favorites) return false;
-  const obj = JSON.parse(favorites);
-  return obj[movieId] || false;
-};
-
-export const isWatchlist = (movieId: number) => {
-  const watchlist: any = localStorage.getItem("watchlist");
-  if (!watchlist) return false;
-  const obj = JSON.parse(watchlist);
-  return obj[movieId] || false;
-};
-
-export const setItemToLocalStorage = (data: any, key: string) => {
+export const setBulkItemToLocalStorage = (data: any, key: string) => {
   const result = data.reduce((acc: any, movie: any) => {
-    acc[movie.id] = movie.title;
+    acc[movie.id] = true;
     return acc;
   }, {});
 

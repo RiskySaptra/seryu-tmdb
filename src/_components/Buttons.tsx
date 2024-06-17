@@ -4,12 +4,22 @@ import {
   IconHeartFilled,
   IconHeart,
 } from "@tabler/icons-react";
-import { isWatchlist, isFavorites } from "../_lib/helpers";
+import { addFavorite, addWatchlist } from "../_handlers/addAndDeleteMovies";
+import { useLocalStorage } from "../_lib/hooks";
 
 export const WatchlistButton = ({ movieId, className }: any) => {
-  const isInWatchlist = isWatchlist(movieId);
+  const [state, setStorage] = useLocalStorage("watchlist");
+  const isInWatchlist = state[movieId];
   return (
-    <button className={isInWatchlist ? "inline" : className}>
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        addWatchlist(movieId, !isInWatchlist).then(() =>
+          setStorage(movieId, isInWatchlist)
+        );
+      }}
+      className={isInWatchlist ? "inline" : className}
+    >
       {isInWatchlist ? (
         <IconBookmarkFilled color="white" />
       ) : (
@@ -20,10 +30,19 @@ export const WatchlistButton = ({ movieId, className }: any) => {
 };
 
 export const FavoriteButton = ({ movieId, className }: any) => {
-  const isInFavorites = isFavorites(movieId);
+  const [state, setStorage] = useLocalStorage("favorites");
+  const isInFavorites = state[movieId];
 
   return (
-    <button className={isInFavorites ? "inline" : className}>
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        addFavorite(movieId, !isInFavorites).then(() => {
+          setStorage(movieId, isInFavorites);
+        });
+      }}
+      className={isInFavorites ? "inline" : className}
+    >
       {isInFavorites ? (
         <IconHeartFilled color="white" />
       ) : (

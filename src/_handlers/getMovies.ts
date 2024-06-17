@@ -1,5 +1,5 @@
 import { clientInstance } from "../_lib/axios-client";
-import { setItemToLocalStorage } from "../_lib/helpers";
+import { setBulkItemToLocalStorage } from "../_lib/helpers";
 
 export async function getNowPlaying() {
   const { data }: any = await clientInstance.get(
@@ -31,7 +31,7 @@ export async function getFavorite() {
   const { data }: any = await clientInstance.get(
     `/account/10101570/favorite/movies?language=en-US&page=1&sort_by=created_at.asc`
   );
-  setItemToLocalStorage(data.results, "favorites");
+  setBulkItemToLocalStorage(data.results, "favorites");
   return data;
 }
 
@@ -39,6 +39,6 @@ export async function getWatchlist() {
   const { data }: any = await clientInstance.get(
     `/account/10101570/watchlist/movies?language=en-US&page=1&sort_by=created_at.asc`
   );
-  setItemToLocalStorage(data.results, "watchlist");
+  setBulkItemToLocalStorage(data.results, "watchlist");
   return data;
 }
