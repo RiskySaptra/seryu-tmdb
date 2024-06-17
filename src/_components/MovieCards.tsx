@@ -1,6 +1,6 @@
-import { IconBookmark, IconStar } from "@tabler/icons-react";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import { FavoriteButton, WatchlistButton } from "./Buttons";
 
 const MovieCards = (itm: any) => {
   const navigate = useNavigate();
@@ -19,9 +19,15 @@ const MovieCards = (itm: any) => {
           height="300"
           loading="lazy"
         />
-        <div className="absolute bottom-2 gap-1 right-2 hidden group-hover:flex">
-          <IconBookmark color="white" />
-          <IconStar color="white" />
+        <div className="absolute bottom-2 gap-1 right-2 flex">
+          <WatchlistButton
+            className="hidden group-hover:inline"
+            movieId={itm.id}
+          />
+          <FavoriteButton
+            className="hidden group-hover:inline"
+            movieId={itm.id}
+          />
         </div>
       </div>
 

@@ -1,7 +1,7 @@
-import { useLoaderData, useNavigation } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { format } from "date-fns";
 import "react-circular-progressbar/dist/styles.css";
-import { IconBookmark, IconCircleFilled, IconStar } from "@tabler/icons-react";
+import { IconCircleFilled } from "@tabler/icons-react";
 import {
   arrayToString,
   calculatePercentage,
@@ -9,20 +9,14 @@ import {
 } from "../_lib/helpers";
 import { CircularProgressbar } from "react-circular-progressbar";
 import MovieCards from "../_components/MovieCards";
+import { FavoriteButton, WatchlistButton } from "../_components/Buttons";
 
 const MovieDetails = () => {
   const data: any = useLoaderData();
-  const navigation = useNavigation();
-  const isLoading = navigation.state === "loading";
   const { movieDetail, movieRecomendations } = data;
 
   return (
     <div className="container mx-auto xl:px-0 px-3">
-      {isLoading && (
-        <div className="fixed top-0 left-0 w-full h-screen bg-black/50 z-30">
-          <div className="fixed top-5 right-5 z-10 w-[50px] h-[50px] bg-[url('/ripples.svg')] bg-no-repeat bg-center bg-contain" />
-        </div>
-      )}
       <div>
         <img
           src={`${
@@ -34,7 +28,6 @@ const MovieDetails = () => {
           key={movieDetail.id}
           alt={"Cover " + movieDetail.title + " Movie"}
           loading="lazy"
-          fetchPriority="high"
         />
         <div className="sm:h-[430px] w-full bg-black/40 absolute sm:top-[100px] top-[60px] left-0 -z-10" />
       </div>
@@ -112,8 +105,14 @@ const MovieDetails = () => {
             </div>
 
             <div className="flex gap-1">
-              <IconBookmark color="white" />
-              <IconStar color="white" />
+              <WatchlistButton
+                className="group-hover:inline"
+                movieId={movieDetail.id}
+              />
+              <FavoriteButton
+                className="group-hover:inline"
+                movieId={movieDetail.id}
+              />
             </div>
           </div>
 

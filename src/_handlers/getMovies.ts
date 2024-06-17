@@ -25,3 +25,17 @@ export async function getMovieDetails(movieId: string) {
   const { data }: any = await clientInstance.get(`/movie/${movieId}`);
   return data;
 }
+
+export async function getFavorite() {
+  const { data }: any = await clientInstance.get(
+    `/account/10101570/favorite/movies?language=en-US&page=1&sort_by=created_at.asc`
+  );
+  return data;
+}
+
+export async function getWatchlist() {
+  const { data }: any = await clientInstance.get(
+    `/account/10101570/watchlist/movies?language=en-US&page=1&sort_by=created_at.asc`
+  );
+  return data;
+}

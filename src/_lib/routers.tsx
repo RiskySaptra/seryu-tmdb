@@ -4,12 +4,17 @@ import {
   getTopRated,
   getMovieDetails,
   getMovieRecommendations,
+  getFavorite,
+  getWatchlist,
 } from "../_handlers/getMovies.ts";
 
 import Layout from "../_components/Layout.tsx";
 import ErrorPage from "../_components/ErrorPage.tsx";
 import Homepage from "../screens/Homepage.tsx";
 import MovieDetails from "../screens/MovieDetails.tsx";
+import Favorite from "../screens/Favorite.tsx";
+import Watchlist from "../screens/Watchlist.tsx";
+import { setItemToLocalStorage } from "./helpers.ts";
 
 export const router = createBrowserRouter([
   {
@@ -38,11 +43,21 @@ export const router = createBrowserRouter([
       },
       {
         path: "favorite",
-        element: <p className="">Favorite</p>,
+        element: <Favorite />,
+        loader: async () => {
+          const favorites = await getFavorite();
+          setItemToLocalStorage(favorites.results, "favorites");
+          return favorites;
+        },
       },
       {
         path: "watchlist",
-        element: <p className="">Watchlist</p>,
+        element: <Watchlist />,
+        loader: async () => {
+          const watchlist = await getWatchlist();
+          setItemToLocalStorage(watchlist.results, "watchlist");
+          return watchlist;
+        },
       },
     ],
   },
