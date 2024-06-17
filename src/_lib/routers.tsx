@@ -14,7 +14,6 @@ import Homepage from "../screens/Homepage.tsx";
 import MovieDetails from "../screens/MovieDetails.tsx";
 import Favorite from "../screens/Favorite.tsx";
 import Watchlist from "../screens/Watchlist.tsx";
-import { setItemToLocalStorage } from "./helpers.ts";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +37,7 @@ export const router = createBrowserRouter([
           const movieRecomendations = await getMovieRecommendations(
             params.movieId
           );
+
           return { movieDetail, movieRecomendations };
         },
       },
@@ -46,7 +46,6 @@ export const router = createBrowserRouter([
         element: <Favorite />,
         loader: async () => {
           const favorites = await getFavorite();
-          setItemToLocalStorage(favorites.results, "favorites");
           return favorites;
         },
       },
@@ -55,7 +54,6 @@ export const router = createBrowserRouter([
         element: <Watchlist />,
         loader: async () => {
           const watchlist = await getWatchlist();
-          setItemToLocalStorage(watchlist.results, "watchlist");
           return watchlist;
         },
       },
