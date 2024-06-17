@@ -11,9 +11,9 @@ const Watchlist = () => {
           Your Watchlist
         </h1>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 sm:gap-5 gap-3">
-          {data.results.map((itm: any, idx: number) => (
-            <GridMovieCard key={idx} {...itm} />
-          ))}
+          {data.results.map((itm: any, idx: number) => {
+            if (itm.poster_path) return <GridMovieCard key={idx} {...itm} />;
+          })}
         </div>
       </div>
     </div>

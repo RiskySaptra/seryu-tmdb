@@ -36,7 +36,9 @@ const MovieCards = (itm: any) => {
           {itm.title}
         </p>
         <p className="truncate text-[#828282] text-[12px] font-inter">
-          {format(new Date(itm.release_date), "yyyy")}
+          {itm.release_date
+            ? format(new Date(itm.release_date), "yyyy")
+            : "No Release Date"}
         </p>
       </div>
     </div>

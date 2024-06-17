@@ -6,6 +6,7 @@ import {
   getMovieRecommendations,
   getFavorite,
   getWatchlist,
+  searchMovie,
 } from "../_handlers/getMovies.ts";
 
 import Layout from "../_components/Layout.tsx";
@@ -26,6 +27,17 @@ export const router = createBrowserRouter([
           const now_playing = await getNowPlaying();
           const top_rated = await getTopRated();
           return { now_playing, top_rated };
+        },
+      },
+      {
+        path: "/search/:query?",
+        async lazy() {
+          let SearchResult = await import("../screens/SearchResult.tsx");
+          return { Component: SearchResult.default };
+        },
+        loader: async ({ params }: any) => {
+          const searchResult = await searchMovie(params.query);
+          return searchResult;
         },
       },
       {

@@ -51,12 +51,18 @@ const MovieDetails = () => {
           <p className="sm:text-[32px] text-[22.5px] sm:text-left text-center font-bold font-poppins">
             {movieDetail.title}{" "}
             <span className="font-normal">
-              ({format(new Date(movieDetail.release_date), "yyyy")})
+              (
+              {movieDetail.release_date
+                ? format(new Date(movieDetail.release_date), "yyyy")
+                : "No Release Date"}
+              )
             </span>
           </p>
           <div className="hidden sm:flex items-center gap-2">
             <p className="text-[14px]">
-              {format(new Date(movieDetail.release_date), "MM/dd/yyyy")}
+              {movieDetail.release_date
+                ? format(new Date(movieDetail.release_date), "MM/dd/yyyy")
+                : "No Release Date"}
             </p>
             <IconCircleFilled className="inline" size={5} />
             <p className="text-[14px]">
@@ -71,7 +77,9 @@ const MovieDetails = () => {
           <div className="sm:hidden flex flex-col items-center gap-2">
             <div className="flex items-center gap-2">
               <p className="text-[14px]">
-                {format(new Date(movieDetail.release_date), "MM/dd/yyyy")}
+                {movieDetail.release_date
+                  ? format(new Date(movieDetail.release_date), "MM/dd/yyyy")
+                  : "No Release Date"}
               </p>
               <IconCircleFilled className="inline" size={5} />
               <p className="text-[14px]">

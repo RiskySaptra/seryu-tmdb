@@ -1,6 +1,16 @@
 import { clientInstance } from "../_lib/axios-client";
 import { setBulkItemToLocalStorage } from "../_lib/helpers";
 
+export async function searchMovie(query: string) {
+  if (!query) {
+    throw new Error("Not Allowed");
+  }
+  const { data }: any = await clientInstance.get(
+    `/search/movie?query=${query}&include_adult=false&language=en-US&page=1`
+  );
+  return data;
+}
+
 export async function getNowPlaying() {
   const { data }: any = await clientInstance.get(
     `/movie/now_playing?language=en-US&page=1`

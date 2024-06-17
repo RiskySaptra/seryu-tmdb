@@ -2,6 +2,7 @@ import { Link, Outlet, useNavigation } from "react-router-dom";
 import { useInterval, useWindowFocus } from "../_lib/hooks";
 import { getFavorite, getWatchlist } from "../_handlers/getMovies";
 import MenuButton from "./MenuButton";
+import SearchBar from "./SerachBar";
 
 const Layout = () => {
   // const revalidator = useRevalidator();
@@ -44,13 +45,14 @@ const Layout = () => {
             >
               CINEMA
             </Link>
-            <div className="hidden sm:flex gap-5">
-              <Link to={"favorite"} className="text-[#FFFFFF] text-[20px]">
+            <div className="hidden sm:flex items-center gap-5">
+              <Link to={"favorite"} className=" text-[#FFFFFF] text-[20px]">
                 Favorite
               </Link>
               <Link to={"watchlist"} className="text-[#FFFFFF] text-[20px]">
                 Watchlist
               </Link>
+              <SearchBar />
             </div>
             <MenuButton />
           </div>
