@@ -29,10 +29,9 @@ export const WatchlistButton = ({ movieId, className }: any) => {
   );
 };
 
-export const FavoriteButton = ({ movieId, className }: any) => {
-  const [state, setStorage] = useLocalStorage("favorites");
+export const FavoriteButton = ({ movieId, className, storageState }: any) => {
+  const [state, setStorage] = storageState;
   const isInFavorites = state[movieId];
-
   return (
     <button
       onClick={(e) => {
