@@ -1,6 +1,6 @@
 # Preview Url
 
--[Seryu-TMDB](https://seryu-tmdb.vercel.app/)
+- [Seryu-TMDB](https://seryu-tmdb.vercel.app/)
 
 # React + TypeScript + Vite
 
