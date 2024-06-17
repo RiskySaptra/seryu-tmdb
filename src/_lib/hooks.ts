@@ -22,7 +22,7 @@ export function useWindowFocus() {
 
 export function useLocalStorage(key: string) {
   let revalidator = useRevalidator();
-  const local = localStorage.getItem(key) || "";
+  const local = localStorage.getItem(key) || "{}";
   const [state, setState] = useState<any>(JSON.parse(local));
   function setStorage(item: any, isDelete: boolean) {
     setState((prevState: any) => {
