@@ -21,11 +21,11 @@ const GridMovieCard = (itm: any) => {
         />
         <div className="absolute bottom-2 gap-1 right-2 flex">
           <WatchlistButton
-            className="hidden group-hover:inline"
+            className="sm:hidden group-hover:inline"
             movieId={itm.id}
           />
           <FavoriteButton
-            className="hidden group-hover:inline"
+            className="sm:hidden group-hover:inline"
             movieId={itm.id}
           />
         </div>
