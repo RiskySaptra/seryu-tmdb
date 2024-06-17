@@ -10,12 +10,10 @@ import {
 import { CircularProgressbar } from "react-circular-progressbar";
 import MovieCards from "../_components/MovieCards";
 import { FavoriteButton, WatchlistButton } from "../_components/Buttons";
-import { useLocalStorage } from "../_lib/hooks";
 
 const MovieDetails = () => {
   const data: any = useLoaderData();
   const { movieDetail, movieRecomendations } = data;
-  const [state, setStorage] = useLocalStorage("favorites");
 
   return (
     <div className="container mx-auto xl:px-0 px-3">
@@ -112,7 +110,6 @@ const MovieDetails = () => {
                 movieId={movieDetail.id}
               />
               <FavoriteButton
-                storageState={[state, setStorage]}
                 className="group-hover:inline"
                 movieId={movieDetail.id}
               />

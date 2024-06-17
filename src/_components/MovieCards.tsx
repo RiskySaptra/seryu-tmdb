@@ -1,30 +1,12 @@
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { FavoriteButton, WatchlistButton } from "./Buttons";
-import { useDoubleTap } from "use-double-tap";
-import { useLocalStorage } from "../_lib/hooks";
-import { addFavorite } from "../_handlers/addAndDeleteMovies";
 
 const MovieCards = (itm: any) => {
   const navigate = useNavigate();
-  const [state, setStorage] = useLocalStorage("favorites");
-  const bind = useDoubleTap(
-    () => {
-      const isInFavorites = state[itm.id];
-      addFavorite(itm.id, !isInFavorites).then(() => {
-        setStorage(itm.id, isInFavorites);
-      });
-    },
-    300,
-    {
-      onSingleTap: () => {
-        navigate(`/${itm.id}`);
-      },
-    }
-  );
   return (
     <div
-      {...bind}
+      onClick={() => navigate(`/${itm.id}`)}
       className="min-w-[200px] h-[370px] bg-[#050E12] rounded-lg snap-center group cursor-pointer"
     >
       <div className="relative bg-[url('/tube-spinner.svg')] bg-no-repeat bg-center bg-contain">
@@ -43,7 +25,6 @@ const MovieCards = (itm: any) => {
             movieId={itm.id}
           />
           <FavoriteButton
-            storageState={[state, setStorage]}
             className="hidden group-hover:inline"
             movieId={itm.id}
           />

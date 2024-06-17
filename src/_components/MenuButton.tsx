@@ -16,7 +16,7 @@ const MenuButton = () => {
       <div
         className={`bg-[#0EA5E9] ${
           menuOpen ? "w-[50vw]" : "w-0"
-        } absolute transition-all right-0 rounded-bl-xl`}
+        } w-[50vw] absolute transition-all right-0 rounded-bl-xl`}
       >
         <div className="flex flex-col py-3">
           <Link
