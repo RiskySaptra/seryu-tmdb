@@ -141,11 +141,20 @@ const MovieDetails = () => {
         <h1 className="sm:text-[20px] text-[15px] font-poppins font-semibold pb-5">
           Recommendations
         </h1>
-        <div className="pb-5 flex overflow-x-scroll gap-5 snap-x">
-          {movieRecomendations.results.map((itm: any, idx: number) => {
-            if (itm.poster_path) return <MovieCards key={idx} {...itm} />;
-          })}
-        </div>
+
+        {movieRecomendations.results.length > 0 ? (
+          <div className="pb-5 flex overflow-x-scroll gap-5 snap-x">
+            {movieRecomendations.results.map((itm: any, idx: number) => {
+              if (itm.poster_path) return <MovieCards key={idx} {...itm} />;
+            })}
+          </div>
+        ) : (
+          <div className="flex justify-center py-10">
+            <p className="text-gray-500 font-bold text-[20px] sm:text-[30px]">
+              No movies found.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

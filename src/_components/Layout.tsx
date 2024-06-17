@@ -52,7 +52,7 @@ const Layout = () => {
               <Link to={"watchlist"} className="text-[#FFFFFF] text-[20px]">
                 Watchlist
               </Link>
-              <SearchBar />
+              <SearchBar closeMenu={() => ""} />
             </div>
             <MenuButton />
           </div>

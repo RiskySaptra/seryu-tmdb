@@ -10,11 +10,19 @@ const SearchResult = () => {
         <h1 className="sm:text-[48px] text-[28px] font-poppins font-semibold mb-3">
           Your Search Result
         </h1>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 sm:gap-5 gap-3">
-          {data.results.map((itm: any, idx: number) => {
-            if (itm.poster_path) return <GridMovieCard key={idx} {...itm} />;
-          })}
-        </div>
+        {data.results.length > 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 sm:gap-5 gap-3">
+            {data.results.map((itm: any, idx: number) => {
+              if (itm.poster_path) return <GridMovieCard key={idx} {...itm} />;
+            })}
+          </div>
+        ) : (
+          <div className="flex justify-center py-10">
+            <p className="text-gray-500 font-bold text-[20px] sm:text-[30px]">
+              No movies found.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

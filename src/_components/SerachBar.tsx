@@ -6,9 +6,11 @@ const SearchBar = ({ closeMenu }: any) => {
   const [searchParam, setSearchParam] = useState("");
   const onFormSubmit = (e: any) => {
     e.preventDefault();
-    navigate(`/search/${searchParam}`);
-    setSearchParam("");
-    closeMenu();
+    if (searchParam) {
+      navigate(`/search/${searchParam}`);
+      setSearchParam("");
+      closeMenu();
+    }
   };
   return (
     <form onSubmit={onFormSubmit}>
