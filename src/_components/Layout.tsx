@@ -11,8 +11,8 @@ import { getAccessToken, getRequestToken } from "../_handlers/auth";
 import { ButtonLogout } from "./Buttons";
 
 import MenuButton from "./MenuButton";
-import Modal from "./Modal";
 import SearchBar from "./SearchBar";
+import Modal from "./Modal";
 
 const handleGetAccessToken = async () => {
   const token: any = await getAccessToken();
