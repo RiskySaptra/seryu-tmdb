@@ -12,7 +12,7 @@ import { ButtonLogout } from "./Buttons";
 
 import MenuButton from "./MenuButton";
 import SearchBar from "./SearchBar";
-import Modal from "./Modal";
+import Modal from "./CommonModal";
 
 const handleGetAccessToken = async () => {
   const token: any = await getAccessToken();
