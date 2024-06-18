@@ -5,7 +5,12 @@ import SearchBar from "./SerachBar";
 import { ButtonLogout } from "./Buttons";
 
 const MenuButton = () => {
+  // const getCurrentToken = localStorage.getItem("request_token");
+  // const getCurrentAccessToken = localStorage.getItem("access_token");
+  // const navigate = useNavigate();
+
   const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="sm:hidden">
       <button className="flex items-center">

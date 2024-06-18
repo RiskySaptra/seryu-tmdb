@@ -5,8 +5,19 @@ const clientInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
   },
+});
+
+clientInstance.interceptors.request.use(function (config) {
+  const accessToken = localStorage.getItem("access_token");
+  if (accessToken) {
+    config.headers["Authorization"] = `Bearer ${accessToken}`;
+  } else {
+    config.headers["Authorization"] = `Bearer ${
+      import.meta.env.VITE_TMDB_API_KEY
+    }`;
+  }
+  return config;
 });
 
 export { clientInstance };

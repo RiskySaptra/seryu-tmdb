@@ -1,4 +1,10 @@
-import { Link, Outlet, useNavigate, useNavigation } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useNavigate,
+  useNavigation,
+  useRevalidator,
+} from "react-router-dom";
 import { useInterval, useWindowFocus } from "../_lib/hooks";
 import { getFavorite, getWatchlist } from "../_handlers/getMovies";
 import { useState } from "react";
@@ -11,7 +17,11 @@ import Modal from "./modal";
 
 const handleGetAccessToken = async () => {
   const token: any = await getAccessToken();
+  localStorage.setItem("account_id", token.account_id);
   localStorage.setItem("access_token", token.access_token);
+  await getFavorite();
+  await getWatchlist();
+  return;
 };
 
 const handleLogin = async () => {
@@ -38,6 +48,7 @@ const handleLogin = async () => {
 const Layout = () => {
   const getCurrentToken = localStorage.getItem("request_token");
   const getCurrentAccessToken = localStorage.getItem("access_token");
+  const revalidator = useRevalidator();
   const { state } = useNavigation();
   const navigate = useNavigate();
   const isWindowFocus = useWindowFocus();
@@ -73,6 +84,7 @@ const Layout = () => {
           onClick={async () => {
             if (getCurrentToken && !getCurrentAccessToken) {
               await handleGetAccessToken();
+              revalidator.revalidate();
               closeModal();
               return;
             }

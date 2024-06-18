@@ -1,9 +1,13 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import GridMovieCard from "../_components/GridMovieCard";
 
 const Favorite = () => {
   const data: any = useLoaderData();
+  const navigate = useNavigate();
 
+  if (true) {
+    navigate("/");
+  }
   return (
     <div className="container mx-auto xl:px-0 px-3">
       <div className="sm:pt-10 pt-5">

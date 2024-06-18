@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import {
   getNowPlaying,
   getTopRated,
@@ -11,6 +11,13 @@ import {
 
 import Layout from "../_components/Layout.tsx";
 import ErrorPage from "../_components/ErrorPage.tsx";
+
+const ProtectedRoutes = () => {
+  // TODO: Use authentication token
+  const localStorageToken = localStorage.getItem("access_token");
+
+  return localStorageToken ? <Outlet /> : <Navigate to="/" replace />;
+};
 
 export const router = createBrowserRouter([
   {
@@ -56,26 +63,31 @@ export const router = createBrowserRouter([
         },
       },
       {
-        path: "favorite",
-        async lazy() {
-          let Favorite = await import("../screens/Favorite.tsx");
-          return { Component: Favorite.default };
-        },
-        loader: async () => {
-          const favorites = await getFavorite();
-          return favorites;
-        },
-      },
-      {
-        path: "watchlist",
-        async lazy() {
-          let Watchlist = await import("../screens/Watchlist.tsx");
-          return { Component: Watchlist.default };
-        },
-        loader: async () => {
-          const watchlist = await getWatchlist();
-          return watchlist;
-        },
+        element: <ProtectedRoutes />,
+        children: [
+          {
+            path: "favorite",
+            async lazy() {
+              let Favorite = await import("../screens/Favorite.tsx");
+              return { Component: Favorite.default };
+            },
+            loader: async () => {
+              const favorites = await getFavorite();
+              return favorites;
+            },
+          },
+          {
+            path: "watchlist",
+            async lazy() {
+              let Watchlist = await import("../screens/Watchlist.tsx");
+              return { Component: Watchlist.default };
+            },
+            loader: async () => {
+              const watchlist = await getWatchlist();
+              return watchlist;
+            },
+          },
+        ],
       },
     ],
   },

@@ -8,12 +8,17 @@ import {
 import { addFavorite, addWatchlist } from "../_handlers/addAndDeleteMovies";
 import { useLocalStorage } from "../_lib/hooks";
 import { useNavigate } from "react-router-dom";
+import { getFavorite, getWatchlist } from "../_handlers/getMovies";
 
 export const ButtonLogout = () => {
   const navigate = useNavigate();
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    localStorage.setItem("account_id", "");
     localStorage.setItem("request_token", "");
     localStorage.setItem("access_token", "");
+    await getFavorite();
+    await getWatchlist();
+
     return navigate(`/`);
   };
 
