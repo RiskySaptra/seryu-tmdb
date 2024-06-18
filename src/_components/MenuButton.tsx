@@ -1,7 +1,7 @@
 import { IconMenu2 } from "@tabler/icons-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import SearchBar from "./SerachBar";
+import SearchBar from "./SearchBar";
 import { ButtonLogout } from "./Buttons";
 
 const MenuButton = () => {
