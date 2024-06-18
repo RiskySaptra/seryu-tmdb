@@ -13,7 +13,7 @@ const GridMovieCard = (itm: any) => {
         <img
           key={itm.id}
           src={`https://image.tmdb.org/t/p/w300${itm.poster_path}`}
-          className="rounded-t-lg"
+          className="rounded-t-lg w-fit"
           alt={"Poster " + itm.title + " Movie"}
           width="246"
           height="300"

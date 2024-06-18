@@ -14,12 +14,12 @@ const SearchBar = ({ closeMenu }: any) => {
   };
   return (
     <form onSubmit={onFormSubmit}>
-      <div className="border rounded overflow-hidden flex">
+      <div className="border rounded overflow-hidden flex ">
         <input
           type="text"
           value={searchParam}
           onChange={(e) => setSearchParam(e.target.value)}
-          className="px-4 py-1 max-w-[100px] focus:max-w-[200px] transition-all text-black "
+          className="px-4 py-1 w-[300px] sm:max-w-[100px] sm:focus:max-w-[200px] transition-all text-black "
           placeholder="Search..."
         />
         <button

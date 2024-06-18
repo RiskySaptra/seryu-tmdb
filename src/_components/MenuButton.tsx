@@ -1,13 +1,13 @@
 import { IconMenu2 } from "@tabler/icons-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { ButtonLogout } from "./Buttons";
 
-const MenuButton = () => {
-  // const getCurrentToken = localStorage.getItem("request_token");
-  // const getCurrentAccessToken = localStorage.getItem("access_token");
-  // const navigate = useNavigate();
+const MenuButton = ({ openModal }: any) => {
+  const currentToken = localStorage.getItem("request_token");
+  const currentAccessToken = localStorage.getItem("access_token");
+  const navigate = useNavigate();
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -29,21 +29,35 @@ const MenuButton = () => {
           <div className="flex px-10 py-3">
             <SearchBar closeMenu={() => setMenuOpen(!menuOpen)} />
           </div>
-          <Link
-            onClick={() => setMenuOpen(!menuOpen)}
-            to={"favorite"}
+          <button
+            onClick={() => {
+              if (currentToken && currentAccessToken) {
+                navigate("/favorite");
+                setMenuOpen(!menuOpen);
+              } else {
+                openModal();
+              }
+            }}
             className="text-[#FFFFFF] text-[20px] px-10 py-3 active:bg-white active:text-[#0EA5E9]"
           >
             Favorite
-          </Link>
-          <Link
-            onClick={() => setMenuOpen(!menuOpen)}
-            to={"watchlist"}
+          </button>
+          <button
+            onClick={() => {
+              if (currentToken && currentAccessToken) {
+                navigate("/watchlist");
+                setMenuOpen(!menuOpen);
+              } else {
+                openModal();
+              }
+            }}
             className="text-[#FFFFFF] text-[20px] px-10 py-3 active:bg-white active:text-[#0EA5E9]"
           >
             Watchlist
-          </Link>
-          <ButtonLogout />
+          </button>
+          <div className="flex px-10 py-3">
+            <ButtonLogout />
+          </div>
         </div>
       </div>
     </div>
