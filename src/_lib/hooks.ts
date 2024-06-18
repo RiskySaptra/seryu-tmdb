@@ -24,22 +24,23 @@ export function useLocalStorage(key: string) {
   let revalidator = useRevalidator();
   const local = localStorage.getItem(key) || "{}";
   const [state, setState] = useState<any>(JSON.parse(local));
+
   function setStorage(item: any, isDelete: boolean) {
     setState((prevState: any) => {
       const newState = { ...prevState };
       if (isDelete) {
         delete newState[item];
-        return newState;
       } else {
         newState[item] = true;
       }
 
+      localStorage.setItem(key, JSON.stringify(newState));
       return newState;
     });
 
-    localStorage.setItem(key, JSON.stringify(state));
     revalidator.revalidate();
   }
+
   return [state, setStorage];
 }
 

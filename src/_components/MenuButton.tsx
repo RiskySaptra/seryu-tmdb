@@ -2,6 +2,7 @@ import { IconMenu2 } from "@tabler/icons-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SerachBar";
+import { ButtonLogout } from "./Buttons";
 
 const MenuButton = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,6 +38,7 @@ const MenuButton = () => {
           >
             Watchlist
           </Link>
+          <ButtonLogout />
         </div>
       </div>
     </div>
